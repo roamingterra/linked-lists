@@ -43,6 +43,16 @@ function LinkedList() {
     getHead: function () {
       return this.head;
     },
+
+    getTail: function () {
+      let lastNode = this.head;
+
+      while (lastNode.next) {
+        lastNode = lastNode.next;
+      }
+
+      return lastNode;
+    },
   };
 }
 
@@ -67,4 +77,4 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-console.log(myList.getSize());
+console.log(myList.getTail());
