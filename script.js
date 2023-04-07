@@ -26,7 +26,7 @@ function LinkedList() {
       this.head.setNext(secondNode);
     },
 
-    size: function () {
+    getSize: function () {
       if (!this.head) return 0;
       else {
         let size = 1;
@@ -38,6 +38,10 @@ function LinkedList() {
         }
         return size;
       }
+    },
+
+    getHead: function () {
+      return this.head;
     },
   };
 }
@@ -63,4 +67,4 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-console.log(myList.size());
+console.log(myList.getSize());
