@@ -45,6 +45,7 @@ function LinkedList() {
     },
 
     getTail: function () {
+      if (!this.head) return null;
       let lastNode = this.head;
 
       while (lastNode.next) {
@@ -52,6 +53,18 @@ function LinkedList() {
       }
 
       return lastNode;
+    },
+
+    getNodeAt: function (index) {
+      if (!this.head) return null;
+      let currentNode = this.head;
+
+      for (let i = 0; i <= index; i++) {
+        if (i === 0) currentNode = currentNode;
+        else currentNode = currentNode.next;
+      }
+
+      return currentNode;
     },
   };
 }
@@ -77,4 +90,4 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-console.log(myList.getTail());
+console.log(myList.getNodeAt(2));
