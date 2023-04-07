@@ -8,18 +8,20 @@ function LinkedList() {
       // If linked list is empty, make new node the head
       if (!this.head) {
         this.head = newNode;
+        // Else, find last node in the list and make it point to the new node
       } else {
-        // Find last node in the list
         let lastNode = this.head;
-        // if head node has a pointer pointing to a next node, enter while loop
         while (lastNode.next) {
-          // Set new last node
           lastNode = lastNode.next;
         }
-
-        // Set the new node as the next node of the last node
         lastNode.setNext(newNode);
       }
+    },
+    prepend: function (value) {
+      const newNode = Node(value);
+
+      // Make new node the head
+      this.head = newNode;
     },
   };
 }
@@ -43,7 +45,6 @@ const myList = LinkedList();
 myList.append(10);
 myList.append(20);
 myList.append(30);
+myList.prepend(5);
 
 console.log(myList);
-
-// Next, I will create new LinkedList methods to do more things to the linked list
