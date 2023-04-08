@@ -47,24 +47,37 @@ function LinkedList() {
     getTail: function () {
       if (!this.head) return null;
       let lastNode = this.head;
-
       while (lastNode.next) {
         lastNode = lastNode.next;
       }
-
       return lastNode;
     },
 
     getNodeAt: function (index) {
       if (!this.head) return null;
       let currentNode = this.head;
-
       for (let i = 0; i <= index; i++) {
         if (i === 0) currentNode = currentNode;
         else currentNode = currentNode.next;
       }
-
       return currentNode;
+    },
+
+    // Method that ruins the last element from the list
+    pop: function () {
+      const size = this.getSize();
+
+      let currentNode = null;
+      if (!size) return 0;
+      if (size === 1) this.head = null;
+      else {
+        currentNode = this.head;
+        for (let i = 1; i < size - 1; i++) {
+          currentNode = currentNode.next;
+        }
+        // Make second last node point to null, effectively removing the last node
+        currentNode.setNext(null);
+      }
     },
   };
 }
@@ -90,4 +103,8 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
+// console.log(myList);
+console.log(myList.getSize());
+myList.pop();
+console.log(myList.getSize());
 console.log(myList.getNodeAt(2));
