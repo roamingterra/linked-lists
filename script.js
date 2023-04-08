@@ -170,6 +170,52 @@ function LinkedList() {
       // Point previous node towards the new node
       previousNode.setNext(newNode);
     },
+
+    removeAt: function (index) {
+      // If index is 0 and there is no head, return
+      if (index === 0 && !this.head) {
+        console.log("Failed");
+        return "";
+      }
+      // Check if there is a node at the given index
+      let testNode = this.head;
+      for (let i = 1; i <= index; i++) {
+        testNode = testNode.next;
+      }
+      if (!testNode) {
+        console.log("Failed");
+        return "";
+      }
+      // If index is 0, remove the node and make the new first node the head
+      if (index === 0) {
+        const previousHead = this.head;
+        const nextNode = previousHead.next;
+        previousHead.setNext(null);
+        this.head = nextNode;
+      }
+      // If index is greater than 0, remove the node at the index, and make the previous node point to the next node
+      if (index > 0) {
+        let testNode = this.head;
+        let previousNode;
+        let nodeToBeRemoved;
+        let nextNode;
+        if (index === 1) previousNode = this.head;
+        for (let i = 1; i <= index + 1; i++) {
+          testNode = testNode.next;
+          if (i === index - 1) {
+            previousNode = testNode;
+          }
+          if (i === index) {
+            nodeToBeRemoved = testNode;
+          }
+          if (i === index + 1) {
+            nextNode = testNode;
+          }
+        }
+        previousNode.setNext(nextNode);
+        nodeToBeRemoved.setNext(null);
+      }
+    },
   };
 }
 
@@ -194,5 +240,5 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-myList.insertAt(1, 2);
+myList.removeAt(0);
 console.log(myList.toString());
