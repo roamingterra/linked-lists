@@ -92,6 +92,22 @@ function LinkedList() {
         return false;
       }
     },
+
+    // Find which index contains the desired value
+    find: function (value) {
+      let index = 0;
+      if (!this.head) return null;
+      let currentNode = this.head;
+      if (currentNode.data === value) return 0;
+      else {
+        while (currentNode.next) {
+          currentNode = currentNode.next;
+          index++;
+          if (currentNode.data === value) return index;
+        }
+      }
+      return null;
+    },
   };
 }
 
@@ -116,13 +132,4 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-// console.log(myList);
-// console.log(myList.getSize());
-// myList.pop();
-// console.log(myList.getSize());
-// console.log(myList.getNodeAt(2));
-console.log(myList.contains(10));
-console.log(myList.contains(20));
-console.log(myList.contains(30));
-console.log(myList.contains(5));
-console.log(myList.contains(0));
+console.log(myList.find(30));
