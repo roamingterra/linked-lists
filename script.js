@@ -233,12 +233,27 @@ function Node(value = null, nextNode = null) {
   };
 }
 
+// TEST THE LINKED LIST
+
 const myList = LinkedList();
 
 myList.append(10);
 myList.append(20);
 myList.append(30);
 myList.prepend(5);
+console.log(myList.getSize());
+console.log(myList.getHead());
+console.log(myList.getTail());
+console.log(myList.getNodeAt(1));
+console.log(myList.contains(5));
+console.log(myList.find(20));
+console.log(myList.toString);
+
+myList.pop();
+console.log(myList.toString());
+
+myList.insertAt(1, 1);
+console.log(myList.toString());
 
 myList.removeAt(0);
 console.log(myList.toString());
