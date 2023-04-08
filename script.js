@@ -79,6 +79,19 @@ function LinkedList() {
         currentNode.setNext(null);
       }
     },
+
+    contains: function (value) {
+      if (!this.head) return false;
+      let currentNode = this.head;
+      if (currentNode.data === value) return true;
+      else {
+        while (currentNode.next) {
+          currentNode = currentNode.next;
+          if (currentNode.data === value) return true;
+        }
+        return false;
+      }
+    },
   };
 }
 
@@ -104,7 +117,12 @@ myList.append(30);
 myList.prepend(5);
 
 // console.log(myList);
-console.log(myList.getSize());
-myList.pop();
-console.log(myList.getSize());
-console.log(myList.getNodeAt(2));
+// console.log(myList.getSize());
+// myList.pop();
+// console.log(myList.getSize());
+// console.log(myList.getNodeAt(2));
+console.log(myList.contains(10));
+console.log(myList.contains(20));
+console.log(myList.contains(30));
+console.log(myList.contains(5));
+console.log(myList.contains(0));
