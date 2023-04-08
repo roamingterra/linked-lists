@@ -108,6 +108,68 @@ function LinkedList() {
       }
       return null;
     },
+
+    toString: function () {
+      if (!this.head) return null;
+      let currentNode = this.head;
+      process.stdout.write(`( ${currentNode.data} )`);
+      while (currentNode.next) {
+        currentNode = currentNode.next;
+        process.stdout.write(` -> ( ${currentNode.data} )`);
+      }
+      process.stdout.write(" -> null");
+      return "";
+    },
+
+    insertAt: function (value, index) {
+      // Create new node
+      const newNode = Node(value);
+
+      // Fail the method call if there is no head and index is greater than 0
+      if (index > 0 && !this.head) {
+        console.log("Failed");
+        return "";
+      }
+
+      // Make new node the head if there is no head and index is 0
+      if (index === 0 && !this.head) {
+        this.head = newNode;
+        return "";
+      }
+
+      // Check if there is a node before the passed by reference index
+      let testNode = this.head;
+      for (let i = 1; i <= index - 1; i++) {
+        testNode = testNode.next;
+      }
+      if (!testNode) {
+        console.log("Failed");
+        return "";
+      }
+
+      // Make new node the head if index is 0 and point it to the previous head if there is one
+      if (index === 0 && this.head) {
+        const previousHead = this.head;
+        this.head = newNode;
+        newNode.setNext(previousHead);
+        return "";
+      }
+      // For all other cases, do the following...
+      // Get node previous to provided index
+      let previousNode = this.head;
+      for (let i = 1; i <= index - 1; i++) {
+        previousNode = previousNode.next;
+      }
+      // Get node at provided index
+      let currentNode = this.head;
+      for (let i = 1; i <= index; i++) {
+        currentNode = currentNode.next;
+      }
+      // Point new node towards the "current node"
+      newNode.setNext(currentNode);
+      // Point previous node towards the new node
+      previousNode.setNext(newNode);
+    },
   };
 }
 
@@ -132,4 +194,5 @@ myList.append(20);
 myList.append(30);
 myList.prepend(5);
 
-console.log(myList.find(30));
+myList.insertAt(1, 2);
+console.log(myList.toString());
